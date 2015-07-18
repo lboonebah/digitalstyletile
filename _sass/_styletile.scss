@@ -1,0 +1,18 @@
+$spacingunit:12px;
+
+.p_A {padding:$spacingunit/2 !important}
+#styletile {
+	border: thin solid #ccc;
+	padding: $spacingunit*5;
+
+	-webkit-box-shadow: 2px 2px 4px 0px #eee;
+	        box-shadow: 2px 2px 4px 0px #eee;
+
+
+	.swatch {
+		width: 100%;
+		height: $spacingunit*4;
+		border: thin solid #ccc;
+	}
+}
+
