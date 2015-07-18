@@ -1,6 +1,7 @@
 $spacingunit:12px;
 
 .p_A {padding:$spacingunit/2 !important}
+.p_A2 {padding:$spacingunit*2 !important}
 #styletile {
 	border: thin solid #ccc;
 	padding: $spacingunit*5;
@@ -16,3 +17,10 @@ $spacingunit:12px;
 	}
 }
 
+.active-well{
+	.page-content, .settings-well{
+		float:left;
+	}
+	.page-content{width:80%}
+	.settings-well{width:20%}
+}
