@@ -4,6 +4,7 @@ $spacingunit:12px;
 .p_A2 {padding:$spacingunit*2 !important}
 .m_T2 {margin-top:$spacingunit*2 !important}
 #styletile {
+	text-shadow: rgba(16,30,40,0.75) 0 2px 5px;
 	background-size: 100%;
 	border: thin solid #ccc;
 	padding: $spacingunit*5;
