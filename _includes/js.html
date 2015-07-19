@@ -8,5 +8,9 @@
 	 				console.log(data.items[0].family)
 	 				$scope.fonts = data.items
 	 		})
+	 		$http.get('http://www.colourlovers.com/api/colors/top?format=json').success(
+	 			function(data){
+	 				$scope.colors = data
+	 			})
 	  	});
 </script>
