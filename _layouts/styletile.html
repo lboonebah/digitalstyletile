@@ -94,9 +94,12 @@
       </div>
       <div class="form-group template">
         <label>Subhead Font</label>
+        {% raw %}
         <select>
-          <option>Font1</option>
-        </select> 
+          <option ng-repeat="font in fonts" value="{{font.family}}">{{font.family}}</option>
+        </select>
+        {% endraw %}
+
       </div>
       <div class="form-group template">
         <label>Color</label>
