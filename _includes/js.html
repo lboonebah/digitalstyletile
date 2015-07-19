@@ -1,17 +1,51 @@
 <script type="text/javascript">
 	
-	angular.module('gitstyler', [])
+	angular.module('gitstyler', ['ui.bootstrap'])
 	  	.controller('StiletileController', function ($scope, $http) {
 	 		$scope.settingstoggle = false;
 
 	 		$http.get('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyD_Yr_HNQMJOOzG_v6aac2W3P5rouNGXco').success(function(data){
-	 				console.log(data.items[0].family)
+	 				// console.log(data.items[0])
 	 				$scope.fonts = data.items
 	 		})
-	 		$http.get('http://www.colourlovers.com/api/colors/top?format=json').success(
+	 		$scope.select_headfont=[];
+	 		$scope.selected_headfont = {'family' : '"Open Sans"'};
+	 		$scope.selected_fontURL = fontURL();
+
+	 		function fontURL (obj){
+
+	 			var fonturl = 'http://fonts.googleapis.com/css?family='
+	 			if (obj){
+	 				
+	 				fonturl = fonturl + obj.family
+	 				console.log(fonturl);
+	 				
+	 			}else{
+	 				fonturl = fonturl + 'Open+Sans'
+	 			}
+	 			return fonturl;
+	 			 
+	 		};
+	 		
+	 		$scope.fontselect = function () {
+	 			var fontobj = angular.fromJson($scope.select_headfont);
+	 			$scope.selected_headfont = fontobj;
+	 			console.log($scope.select_headfont.family)
+	 			$scope.selected_fontURL = fontURL($scope.selected_headfont);
+	 			// console.log('test',test)
+
+	 		}
+	 		console.log('headfontselect',$scope.selected_headfont, 'selectedfont', $scope.select_headfont)
+	 		
+	 		$http.jsonp('http://www.colourlovers.com/api/palettes?format=json&jsonCallback=JSON_CALLBACK').success(
 	 			function(data){
 	 				$scope.colors = data;
-	 				console.log(data)
-	 			})
+	 				// console.log(data)
+	 			}).error(
+	 			function(data, status, headers, config){console.log(status)});
+	 		$scope.$watch('selected_fontURL', function (newVal) {
+	 			console.log( 'newVal', newVal  );
+	 		})
 	  	});
+			
 </script>
