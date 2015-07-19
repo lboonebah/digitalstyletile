@@ -52,10 +52,20 @@
               </div>
               
             </div>
-            <div class="design col-sm-6">
+            <div class="design col-sm-6 colourlovers" ng-show="true">
               <h1 class="font template">Design Elements</h1>
               <div class="row colors">
-                <h2 class="design col-sm-12">Color Pallete</h2>  
+                <h2 class="design col-sm-12">Color Pallete</h2>
+                {% raw %} 
+                <div class="col-sm-2" ng-repeat="swatch in selected_colors">
+                  <div class="swatch primary1" style="background-color:#{{swatch}}"></div> 
+                    <p class="template"> {{swatch}}</p>
+                </div>
+                
+                {% endraw %}
+              </div>
+              <div class="row colors specifide"  ng-show="fasle">
+                <h2 class="design col-sm-12">Color Pallete</h2>
                 <div class="col-sm-2 ">
                   <div class="swatch primary1" style="background-color:{{page.color1}}"></div> 
                     <p class="template"> {{page.color1}}</p>
@@ -77,6 +87,7 @@
                     <p class="template">{{page.accent3}}</p>
                 </div>
               </div>
+
               <div class="row colors">
                 <h2 class="design col-sm-12">Images/Patterns</h2>  
                 <div class="col-sm-4 "><div class=""></div></div>
@@ -92,10 +103,13 @@
     <div class="settings-well 2" ng-show="settingstoggle">
       <h2 class="template">Settings Well</h2> 
       <div class="form-group template">
-        <label>Header Font</label>
-        <select>
-          <option>Font1</option>
-        </select> 
+        <label>Head Font</label>
+        {% raw %}
+        <select ng-change="fontselect()" ng-model="select_headfont">
+          <option ng-repeat="font in fonts" value="{{font}}">{{font.family}}</option>
+        </select>
+        {% endraw %}
+
       </div>
       <div class="form-group template">
         <label>Subhead Font</label>
@@ -115,8 +129,8 @@
             <a href class="dropdown-toggle btn btn-default" dropdown-toggle>
               ColourLovers.com
             </a>
-            <ul class="dropdown-menu">
-              <li ng-repeat="color in colors">{{color.title}}<br><img ng-src="{{color.imageUrl}}"></li>
+            <ul class="dropdown-menu" ng-model="select_color">
+              <li ng-repeat="color in colors"><a href="#" ng-click="colorselect(color)">{{color.title}}<br><img ng-src="{{color.imageUrl}}"></a></li>
             </ul>
           </div>
         {% endraw %}

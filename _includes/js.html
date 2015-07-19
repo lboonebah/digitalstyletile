@@ -10,9 +10,10 @@
 	 		})
 	 		$scope.select_headfont=[];
 	 		$scope.selected_headfont = {'family' : '"Open Sans"'};
-	 		$scope.selected_fontURL = fontURL();
+	 		$scope.selected_colors = setColor();
+	 		$scope.selected_fontURL = setFontURL();
 
-	 		function fontURL (obj){
+	 		function setFontURL (obj){
 
 	 			var fonturl = 'http://fonts.googleapis.com/css?family='
 	 			if (obj){
@@ -26,14 +27,29 @@
 	 			return fonturl;
 	 			 
 	 		};
+	 		function setColor (obj) {
+	 			var colors;
+	 			if(obj){
+
+	 			}
+ 				else{
+ 					colors = ['aaa', 'bbb', 'ccc', 'ddd', 'eee']
+ 				}
+	 			return colors
+	 		}
 	 		
 	 		$scope.fontselect = function () {
 	 			var fontobj = angular.fromJson($scope.select_headfont);
 	 			$scope.selected_headfont = fontobj;
 	 			console.log($scope.select_headfont.family)
-	 			$scope.selected_fontURL = fontURL($scope.selected_headfont);
+	 			$scope.selected_fontURL = setFfontURL($scope.selected_headfont);
 	 			// console.log('test',test)
 
+	 		};
+	 		
+	 		$scope.colorselect = function (color){
+	 			// console.log(color);
+	 			$scope.selected_colors = color.colors;
 	 		}
 	 		console.log('headfontselect',$scope.selected_headfont, 'selectedfont', $scope.select_headfont)
 	 		
@@ -44,6 +60,9 @@
 	 			}).error(
 	 			function(data, status, headers, config){console.log(status)});
 	 		$scope.$watch('selected_fontURL', function (newVal) {
+	 			// console.log( 'newVal', newVal  );
+	 		});
+	 		$scope.$watch('selected_colors', function (newVal) {
 	 			console.log( 'newVal', newVal  );
 	 		})
 	  	});
