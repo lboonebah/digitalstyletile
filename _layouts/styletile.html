@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="gitstyler" ng-controller="StiletileController">
 
   {% include head.html %}
 
-  <body class="active-well">
+  <body ng-class="{'active-well': settingstoggle}" style="color:{{page.textcolor}}" >
 
     {% include header.html %}
 
     <div class="page-content">
       <div class="container">
-        <div id="styletile">
+        <div id="styletile" style="background-image: url({{page.background-image}})">
           <div class="row tilehead">
             <div class="logo col-sm-12">
-              <img src="{{pagee.logo}}">
+              <img src="{{page.logo}}">
             </div>
           </div>
           <div class="row">
@@ -31,7 +31,7 @@
               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 
               <a href="">this is a link</a>
-              <div class="row buttons">
+              <div class="row buttons m_T2">
                 <div class="button col-md-4">
                   <button>CTA</button>
                   <p class="font template">FONT: </p>
@@ -50,28 +50,33 @@
             <div class="design col-sm-6">
               <h1 class="font template">Design Elements</h1>
               <div class="row colors">
-                <h2>Color Pallete</h2>  
-                <div class="col-sm-2 p_A">
-                  <div class="swatch primary1" style="background-color:{{page.color1}}">{{page.color1}}</div>
+                <h2 class="design col-sm-12">Color Pallete</h2>  
+                <div class="col-sm-2 ">
+                  <div class="swatch primary1" style="background-color:{{page.color1}}"></div> 
+                    <p class="template"> {{page.color1}}</p>
                 </div>
-                <div class="col-sm-2 p_A">
-                  <div class="swatch primary2" style="background-color:{{page.color2}}">{{page.color2}}</div>
+                <div class="col-sm-2 ">
+                  <div class="swatch primary2" style="background-color:{{page.color2}}"></div>
+                    <p class="template">{{page.color2}}</p>
                 </div>
-                <div class="col-sm-2 p_A">
-                  <div class="swatch accent1" style="background-color:{{page.accent1}}">{{page.accent1}}</div>
+                <div class="col-sm-2 ">
+                  <div class="swatch accent1" style="background-color:{{page.accent1}}"></div>
+                    <p class="template">{{page.accent1}}</p>
                 </div>
-                <div class="col-sm-2 p_A">
-                  <div class="swatch accent2" style="background-color:{{page.accent2}}">{{page.accent2}}</div>
+                <div class="col-sm-2 ">
+                  <div class="swatch accent2" style="background-color:{{page.accent2}}"></div>
+                    <p class="template">{{page.accent2}}</p>
                 </div>
-                <div class="col-sm-2 p_A">
-                  <div class="swatch accent3" style="background-color:{{page.accent3}}">{{page.accent3}}</div>
+                <div class="col-sm-2 ">
+                  <div class="swatch accent3" style="background-color:{{page.accent3}}"></div>
+                    <p class="template">{{page.accent3}}</p>
                 </div>
               </div>
               <div class="row colors">
-                <h2>Images/Patterns</h2>  
-                <div class="col-sm-4 p_A"><div class=""></div></div>
-                <div class="col-sm-4 p_A"><div class=""></div></div>
-                <div class="col-sm-4 p_A"><div class=""></div></div>
+                <h2 class="design col-sm-12">Images/Patterns</h2>  
+                <div class="col-sm-4 "><div class=""></div></div>
+                <div class="col-sm-4 "><div class=""></div></div>
+                <div class="col-sm-4 "><div class=""></div></div>
               
               </div>
             </div>
@@ -79,26 +84,26 @@
         </div>
       </div>
     </div> 
-    <div class="settings-well p_A2">
-      <h2>Settings Well</h2> 
-      <div class="form-group">
+    <div class="settings-well 2" ng-show="settingstoggle">
+      <h2 class="template">Settings Well</h2> 
+      <div class="form-group template">
         <label>Header Font</label>
         <select>
           <option>Font1</option>
         </select> 
       </div>
-      <div class="form-group">
+      <div class="form-group template">
         <label>Subhead Font</label>
         <select>
           <option>Font1</option>
         </select> 
       </div>
-      <div class="form-group">
+      <div class="form-group template">
         <label>Color</label>
         <input type="color">
       </div>
         
     </div>
   </body>
-
+  {% include js.html%}
 </html>

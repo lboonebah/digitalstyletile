@@ -2,7 +2,9 @@ $spacingunit:12px;
 
 .p_A {padding:$spacingunit/2 !important}
 .p_A2 {padding:$spacingunit*2 !important}
+.m_T2 {margin-top:$spacingunit*2 !important}
 #styletile {
+	background-size: 100%;
 	border: thin solid #ccc;
 	padding: $spacingunit*5;
 
@@ -14,6 +16,7 @@ $spacingunit:12px;
 		width: 100%;
 		height: $spacingunit*4;
 		border: thin solid #ccc;
+		text-align: center;
 	}
 }
 
@@ -22,5 +25,17 @@ $spacingunit:12px;
 		float:left;
 	}
 	.page-content{width:80%}
-	.settings-well{width:20%}
+	.settings-well{
+		width:20%; 
+		padding:0 $spacingunit*2;
+		color:black;
+	}
 }
+
+
+h1, h2, p{
+	&.template {font-size: 16px; font-weight: normal; text-transform: uppercase}
+}
+
+h2.template {font-size: 14px;}
+p.template {font-size: 12px;margin-top:$spacingunit/2}

@@ -1,0 +1,11 @@
+<script type="text/javascript">
+	
+	angular.module('gitstyler', [])
+	  	.controller('StiletileController', function ($scope, $http) {
+	 		$scope.settingstoggle = false;
+
+	 		$http.get('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyD_Yr_HNQMJOOzG_v6aac2W3P5rouNGXco').success(function(data){
+	 				console.log(data)
+	 		})
+	  	});
+</script>
