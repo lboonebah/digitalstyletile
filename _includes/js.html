@@ -10,7 +10,8 @@
 	 		})
 	 		$http.get('http://www.colourlovers.com/api/colors/top?format=json').success(
 	 			function(data){
-	 				$scope.colors = data
+	 				$scope.colors = data;
+	 				console.log(data)
 	 			})
 	  	});
 </script>
