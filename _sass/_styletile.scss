@@ -3,6 +3,7 @@ $spacingunit:12px;
 .p_A {padding:$spacingunit/2 !important}
 .p_A2 {padding:$spacingunit*2 !important}
 .m_T2 {margin-top:$spacingunit*2 !important}
+.fixed {position:fixed !important; width:100%; z-index: 100}
 #styletile {
 	text-shadow: rgba(16,30,40,0.75) 0 2px 5px;
 	background-size: 100%;
@@ -20,7 +21,7 @@ $spacingunit:12px;
 		text-align: center;
 	}
 }
-
+.page-content, .settings-well {padding-top: $spacingunit*7}
 .active-well{
 	.page-content, .settings-well{
 		float:left;
@@ -28,7 +29,7 @@ $spacingunit:12px;
 	.page-content{width:80%}
 	.settings-well{
 		width:20%; 
-		padding:0 $spacingunit*2;
+		padding:$spacingunit*7 $spacingunit*2 $spacingunit*2;
 		color:black;
 	}
 	#colorselect {

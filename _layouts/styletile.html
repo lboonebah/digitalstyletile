@@ -10,7 +10,8 @@
     <div class="page-content">
       <div class="container">
       {% raw %}
-        <link ng-href='{{selected_fontURL}}' rel='stylesheet' type='text/css'>
+        <link ng-if="selected_headURL" ng-href='{{selected_headURL}}' rel='stylesheet' type='text/css'>
+        <link ng-if="selected_subheadURL" ng-href='{{selected_subheadURL}}' rel='stylesheet' type='text/css'>
       {% endraw %}
         <div id="styletile" style="background-image: url({{page.background-image}})">
           <div class="row tilehead">
@@ -24,10 +25,9 @@
               <h1 class="font template">Typography</h1>
               {% raw %}
               <h1 style="font-family:{{selected_headfont.family}}">This is a H1 Header</h1>
-              {% endraw %}
-              <p class="font template">FONT: </p>
-              <h2>This is a H2 Sub-Header</h2>
-              <p class="font template">FONT: </p>
+              <p class="font template">FONT: {{selected_headfont.family}}</p>
+              <h2 style="font-family:{{selected_subheadfont.family}}">This is a H2 Sub-Header</h2>
+              <p class="font template">FONT: {{selected_subheadfont.family}}</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
               quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -36,6 +36,7 @@
               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 
               <a href="">this is a link</a>
+              {% endraw %}
               <div class="row buttons m_T2">
                 <div class="button col-md-4">
                   <button>CTA</button>
@@ -99,61 +100,71 @@
         </div>
       </div>
     </div> 
-    <div class="settings-well 2" ng-show="settingstoggle">
-      <h2 class="template">Settings Well</h2> 
-      <div class="form-group template">
-        <label>Head Font</label>
-        {% raw %}
-        <select ng-change="fontselect()" ng-model="select_headfont">
-          <option ng-repeat="font in fonts" value="{{font}}">{{font.family}}</option>
-        </select>
-        {% endraw %}
-
-      </div>
-      <div class="form-group template">
-        <label>Subhead Font</label>
-        {% raw %}
-        <select ng-change="fontselect()" ng-model="select_headfont">
-          <option ng-repeat="font in fonts" value="{{font}}">{{font.family}}</option>
-        </select>
-        {% endraw %}
-
-      </div>
-      <div class="form-group template">
-      <h3 class="pull-left">Color </h3>
-      <tabset id="colorselect">
-        <tab select="resetColors()">
-          <tab-heading >
-            <i class="glyphicon glyphicon-folder-close"></i> 
-          </tab-heading>
-          <label>Color</label>
-          <input type="color">
-        </tab>
-        <tab>
-          <tab-heading>
-            <i class="glyphicon glyphicon-globe"></i>
-          </tab-heading>
-          {% raw %}
-            <div class="dropdown" dropdown on-toggle="toggled(open)">
-              <a href class="dropdown-toggle " dropdown-toggle>
-                ColourLovers.com
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu" ng-model="select_color">
-                <li ng-repeat="color in colors"><a href="#" ng-click="colorselect(color)">{{color.title}}<br><img ng-src="{{color.imageUrl}}"></a></li>
-              </ul>
-            </div>
-          {% endraw %}
-        </tab>
-        
-        
-        
-      </tabset>
+    <div class="settings-well" ng-show="settingstoggle">
+      <h2 class="template">Settings Well</h2>
+      <h3>Fonts</h3> 
       
+      <div class="form-group template">
+        
+        <div class="dropdown" dropdown on-toggle="toggled(open)">
+          <a href class="dropdown-toggle btn btn-default" dropdown-toggle>
+            Head Font
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" ng-model="select_color">
+            {% raw %}
+            <li><input type="text" ng-model="searchfont"></li>
+            <li ng-repeat="font in fonts | filter: searchfont"><a href="#" ng-click="fontselect(font, 'head')">{{font.family}}</a></li>
+            {% endraw %}
+          </ul>
+        </div>
 
+      </div>
+      <div class="form-group template">
+        <div class="dropdown" dropdown on-toggle="toggled(open)">
+          <a href class="dropdown-toggle btn btn-default" dropdown-toggle>
+            Subead Font
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" ng-model="select_color">
+            {% raw %}
+            <li><input type="text" ng-model="searchfont"></li>
+            <li ng-repeat="font in fonts | filter: searchfont"><a href="#" ng-click="fontselect(font, 'subhead')">{{font.family}}</a></li>
+            {% endraw %}
+          </ul>
+        </div>
         
 
-        
+      </div>
+      <div class="form-group template">
+        <h3 class="pull-left">Color </h3>
+        <tabset id="colorselect">
+          <tab select="resetColors()">
+            <tab-heading >
+              <i class="glyphicon glyphicon-folder-close"></i> 
+            </tab-heading>
+            <span ng-init="color1='{color: {{page.color1}}}'"> </span>
+            <input type="color" value="{{page.color1}}">{{page.color1}}<br>
+            <input type="color" value="{{page.color2}}">{{page.color2}}<br>
+            <input type="color" value="{{page.color3}}">{{page.color3}}<br>
+            <input type="color" value="{{page.color4}}">{{page.color4}}<br>
+            <input type="color" value="{{page.color5}}">{{page.color5}}<br>
+          </tab>
+          <tab>
+            <tab-heading>
+              <i class="glyphicon glyphicon-globe"></i>
+            </tab-heading>
+            {% raw %}
+                <h3>ColourLovers.com</h3>
+                <form>
+                  <input type="text" ng-model="query_colourlovers"><button ng-click="searchColourlovers(query_colourlovers)">Go</button>
+                </form> 
+                <ul ng-model="select_color">
+                  <li ng-repeat="color in colors"><a href="#" ng-click="colorselect(color)">{{color.title}}<br><img ng-src="{{color.imageUrl}}"></a></li>
+                </ul>
+            {% endraw %}
+          </tab>        
+        </tabset>
       </div>
         
     </div>

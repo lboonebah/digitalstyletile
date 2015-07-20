@@ -8,10 +8,12 @@
 	 				// console.log(data.items[0])
 	 				$scope.fonts = data.items
 	 		})
-	 		$scope.select_headfont=[];
+	 		
 	 		$scope.selected_headfont = {'family' : '"Open Sans"'};
+	 		$scope.selected_subheadfont = {'family' : '"Open Sans"'};
 	 		$scope.selected_colors = setColor();
 	 		$scope.selected_fontURL = setFontURL();
+	 		$scope.query_colourlovers ="test";
 
 	 		function setFontURL (obj){
 
@@ -42,33 +44,49 @@
 	 			$scope.selected_colors = null;
 	 		}
 	 		
-	 		$scope.fontselect = function () {
-	 			var fontobj = angular.fromJson($scope.select_headfont);
-	 			$scope.selected_headfont = fontobj;
-	 			// console.log($scope.select_headfont.family)
-	 			$scope.selected_fontURL = setFontURL($scope.selected_headfont);
-	 			// console.log('test',test)
+	 		$scope.fontselect = function (font, loc) {
+	 			var fontobj = angular.fromJson(font);
+	 			if (loc == 'head'){
+	 				$scope.selected_headfont = fontobj;
+		 			// console.log($scope.select_headfont.family)
+		 			$scope.selected_headURL = setFontURL($scope.selected_headfont);
+		 			// console.log('test',test)
 
+	 			}else if (loc == 'subhead') {
+	 				$scope.selected_subheadfont = fontobj;
+		 			// console.log($scope.select_headfont.family)
+		 			$scope.selected_subheadURL = setFontURL($scope.selected_headfont);
+		 			// console.log('test',test)
+	 			}
+	 			
 	 		};
 	 		
 	 		$scope.colorselect = function (color){
 	 			// console.log(color);
 	 			$scope.selected_colors = color.colors;
 	 		}
-	 		console.log('headfontselect',$scope.selected_headfont, 'selectedfont', $scope.select_headfont)
-	 		
-	 		$http.jsonp('http://www.colourlovers.com/api/palettes?format=json&jsonCallback=JSON_CALLBACK').success(
+	 		$scope.searchColourlovers = function (query_colourlovers){
+	 			console.log('searchColourlovers', query_colourlovers);
+	 			$scope.query_colourlovers =query_colourlovers;
+	 		}
+	 		// console.log('headfontselect',$scope.selected_headfont, 'selectedfont', $scope.select_headfont)
+	 		var colourloverURL = 'http://www.colourlovers.com/api/palettes?&format=json&jsonCallback=JSON_CALLBACK'
+	 		function seacrhColorLovers () {
+	 			
+	 		};
+	 		$http.jsonp(colourloverURL).success(
 	 			function(data){
 	 				$scope.colors = data;
 	 				// console.log(data)
 	 			}).error(
 	 			function(data, status, headers, config){console.log(status)});
+	 		}
 	 		$scope.$watch('selected_fontURL', function (newVal) {
 	 			// console.log( 'newVal', newVal  );
 	 		});
-	 		// $scope.$watch('selected_colors', function (newVal) {
-	 		// 	console.log( 'newVal', newVal  );
-	 		// })
+	 		$scope.$watch('query_colourlovers', function (newVal) {
+	 			console.log( 'searchColourlovers', newVal  );
+	 		})
 	  	});
 			
 </script>
