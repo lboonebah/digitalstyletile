@@ -19,7 +19,7 @@
 	 			if (obj){
 	 				
 	 				fonturl = fonturl + obj.family
-	 				console.log(fonturl);
+	 				// console.log(fonturl);
 	 				
 	 			}else{
 	 				fonturl = fonturl + 'Open+Sans'
@@ -33,15 +33,19 @@
 
 	 			}
  				else{
- 					colors = ['aaa', 'bbb', 'ccc', 'ddd', 'eee']
+ 					colors = null
  				}
 	 			return colors
+	 		}
+	 		 $scope.resetColors = function() {
+	 		
+	 			$scope.selected_colors = null;
 	 		}
 	 		
 	 		$scope.fontselect = function () {
 	 			var fontobj = angular.fromJson($scope.select_headfont);
 	 			$scope.selected_headfont = fontobj;
-	 			console.log($scope.select_headfont.family)
+	 			// console.log($scope.select_headfont.family)
 	 			$scope.selected_fontURL = setFontURL($scope.selected_headfont);
 	 			// console.log('test',test)
 
@@ -62,9 +66,9 @@
 	 		$scope.$watch('selected_fontURL', function (newVal) {
 	 			// console.log( 'newVal', newVal  );
 	 		});
-	 		$scope.$watch('selected_colors', function (newVal) {
-	 			console.log( 'newVal', newVal  );
-	 		})
+	 		// $scope.$watch('selected_colors', function (newVal) {
+	 		// 	console.log( 'newVal', newVal  );
+	 		// })
 	  	});
 			
 </script>

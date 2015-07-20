@@ -52,10 +52,10 @@
               </div>
               
             </div>
-            <div class="design col-sm-6 colourlovers" ng-show="true">
-              <h1 class="font template">Design Elements</h1>
-              <div class="row colors">
-                <h2 class="design col-sm-12">Color Pallete</h2>
+            <div class="design col-sm-6 colourlovers" >
+              <h1 class=" template">Design Elements</h1>
+              <h2 class="design template">Color Pallete</h2>
+              <div class="row colors service" ng-show="selected_colors">
                 {% raw %} 
                 <div class="col-sm-2" ng-repeat="swatch in selected_colors">
                   <div class="swatch primary1" style="background-color:#{{swatch}}"></div> 
@@ -64,8 +64,7 @@
                 
                 {% endraw %}
               </div>
-              <div class="row colors specifide"  ng-show="fasle">
-                <h2 class="design col-sm-12">Color Pallete</h2>
+              <div class="row colors specifide"  ng-show="!selected_colors">
                 <div class="col-sm-2 ">
                   <div class="swatch primary1" style="background-color:{{page.color1}}"></div> 
                     <p class="template"> {{page.color1}}</p>
@@ -75,16 +74,16 @@
                     <p class="template">{{page.color2}}</p>
                 </div>
                 <div class="col-sm-2 ">
-                  <div class="swatch accent1" style="background-color:{{page.accent1}}"></div>
-                    <p class="template">{{page.accent1}}</p>
+                  <div class="swatch accent1" style="background-color:{{page.color3}}"></div>
+                    <p class="template">{{page.color3}}</p>
                 </div>
                 <div class="col-sm-2 ">
-                  <div class="swatch accent2" style="background-color:{{page.accent2}}"></div>
-                    <p class="template">{{page.accent2}}</p>
+                  <div class="swatch accent2" style="background-color:{{page.color4}}"></div>
+                    <p class="template">{{page.color4}}</p>
                 </div>
                 <div class="col-sm-2 ">
-                  <div class="swatch accent3" style="background-color:{{page.accent3}}"></div>
-                    <p class="template">{{page.accent3}}</p>
+                  <div class="swatch accent3" style="background-color:{{page.color5}}"></div>
+                    <p class="template">{{page.color5}}</p>
                 </div>
               </div>
 
@@ -121,21 +120,40 @@
 
       </div>
       <div class="form-group template">
-      <label>Color</label>
+      <h3 class="pull-left">Color </h3>
+      <tabset id="colorselect">
+        <tab select="resetColors()">
+          <tab-heading >
+            <i class="glyphicon glyphicon-folder-close"></i> 
+          </tab-heading>
+          <label>Color</label>
+          <input type="color">
+        </tab>
+        <tab>
+          <tab-heading>
+            <i class="glyphicon glyphicon-globe"></i>
+          </tab-heading>
+          {% raw %}
+            <div class="dropdown" dropdown on-toggle="toggled(open)">
+              <a href class="dropdown-toggle " dropdown-toggle>
+                ColourLovers.com
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" ng-model="select_color">
+                <li ng-repeat="color in colors"><a href="#" ng-click="colorselect(color)">{{color.title}}<br><img ng-src="{{color.imageUrl}}"></a></li>
+              </ul>
+            </div>
+          {% endraw %}
+        </tab>
+        
+        
+        
+      </tabset>
       
-        {% raw %}
-          <div class="dropdown" dropdown on-toggle="toggled(open)">
-            <a href class="dropdown-toggle btn btn-default" dropdown-toggle>
-              ColourLovers.com
-            </a>
-            <ul class="dropdown-menu" ng-model="select_color">
-              <li ng-repeat="color in colors"><a href="#" ng-click="colorselect(color)">{{color.title}}<br><img ng-src="{{color.imageUrl}}"></a></li>
-            </ul>
-          </div>
-        {% endraw %}
 
-        <label>Color</label>
-        <input type="color">
+        
+
+        
       </div>
         
     </div>
