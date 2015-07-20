@@ -9,7 +9,7 @@
 	 				$scope.fonts = data.items
 	 		})
 	 		
-	 		$scope.selected_headfont = {'family' : '"Open Sans"'};
+	 		$scope.selected_headfont = null;
 	 		$scope.selected_subheadfont = {'family' : '"Open Sans"'};
 	 		$scope.selected_colors = setColor();
 	 		$scope.selected_fontURL = setFontURL();
@@ -32,7 +32,7 @@
 	 		function setColor (obj) {
 	 			var colors;
 	 			if(obj){
-
+	 				colors = obj;
 	 			}
  				else{
  					colors = null
@@ -46,7 +46,7 @@
 	 		
 	 		$scope.fontselect = function (font, loc) {
 	 			var fontobj = angular.fromJson(font);
-	 			if (loc == 'head'){
+	 			if (loc == 'head' && !$scope.selected_headfont){
 	 				$scope.selected_headfont = fontobj;
 		 			// console.log($scope.select_headfont.family)
 		 			$scope.selected_headURL = setFontURL($scope.selected_headfont);
@@ -71,16 +71,13 @@
 	 		}
 	 		// console.log('headfontselect',$scope.selected_headfont, 'selectedfont', $scope.select_headfont)
 	 		var colourloverURL = 'http://www.colourlovers.com/api/palettes?&format=json&jsonCallback=JSON_CALLBACK'
-	 		function seacrhColorLovers () {
-	 			
-	 		};
+	 		
 	 		$http.jsonp(colourloverURL).success(
 	 			function(data){
 	 				$scope.colors = data;
 	 				// console.log(data)
 	 			}).error(
 	 			function(data, status, headers, config){console.log(status)});
-	 		}
 	 		$scope.$watch('selected_fontURL', function (newVal) {
 	 			// console.log( 'newVal', newVal  );
 	 		});
