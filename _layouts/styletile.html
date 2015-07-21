@@ -28,52 +28,9 @@
             <div class="typography col-sm-6" >
 
               <h1 class="font template">Typography</h1>
-              <div ng-show="selected_headfont">
-                {% raw %}
-                
-                  <h1 style="font-family:{{selected_headfont.family}}">This is a H1 Header</h1>
-                  <p class="font template">FONT: {{selected_headfont.family}}</p>
-                  <h2 style="font-family:{{selected_subheadfont.family}}">This is a H2 Sub-Header</h2>
-                  <p class="font template">FONT: {{selected_subheadfont.family}}</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    
-                  <a href="">this is a link</a>
-                {% endraw %}
-              </div>
-              <div ng-show="!selected_headfont">
-                <h1 style="font-family:{{page.font1.family}}">This is a H1 Header</h1>
-                <p class="font template">FONT: {{page.font1.family}}</p>
-                <h2 style="font-family:{{page.font2.family}}">This is a H2 Sub-Header</h2>
-                <p class="font template">FONT: {{page.font2.family}}</p>
-                <p style="font-family:{{page.font3.family}}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="font template">FONT: {{page.font3.family}}</p>  
-                <a href="">this is a link</a>
-              </div>
+              {% include text.html %}
               
-              <div class="row buttons m_T2">
-                <div class="button col-md-4">
-                  <button>CTA</button>
-                  <p class="font template">FONT: </p>
-                </div>
-                <div class="button col-md-4">
-                  <button>Secondary</button>
-                  <p class="font template">FONT: </p>
-                </div>
-                <div class="button col-md-4">
-                  <button>Standard</button>
-                  <p class="font template">FONT: </p>
-                </div>
-              </div>
+              {% include buttons.html %}
               
             </div>
             <div class="design col-sm-6 colourlovers" >
@@ -113,84 +70,20 @@
 
               <div class="row colors">
                 <h2 class="design col-sm-12 template">Images/Patterns</h2>  
-                <div class="col-sm-4 "><div class=""><img src="{{page.image1}}"</div></div>
-                <div class="col-sm-4 "><div class=""><img src="{{page.image2}}"</div></div>
-                <div class="col-sm-4 "><div class=""><img src="{{page.image3}}"</div></div>
+                <div class="col-sm-4 "><div class="imagepattern"><img src="{{page.image1}}"></div></div>
+                <div class="col-sm-4 "><div class="imagepattern"><img src="{{page.image2}}"></div></div>
+                <div class="col-sm-4 "><div class="imagepattern"><img src="{{page.image3}}"></div></div>
               
               </div>
             </div>
           </div>
+          <div class="custom_section">
+            {{content}}
+          </div>
         </div>
       </div>
     </div> 
-    <div class="settings-well" ng-show="settingstoggle">
-      <h2 class="template">Settings Well</h2>
-      <h3>Fonts</h3> 
-      
-      <div class="form-group template">
-        
-        <div class="dropdown" dropdown on-toggle="toggled(open)">
-          <a href class="dropdown-toggle btn btn-default" dropdown-toggle>
-            Head Font
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" ng-model="select_color">
-            {% raw %}
-            <li><input type="text" ng-model="searchfont"></li>
-            <li ng-repeat="font in fonts | filter: searchfont"><a href="#" ng-click="fontselect(font, 'head')">{{font.family}}</a></li>
-            {% endraw %}
-          </ul>
-        </div>
-
-      </div>
-      <div class="form-group template">
-        <div class="dropdown" dropdown on-toggle="toggled(open)">
-          <a href class="dropdown-toggle btn btn-default" dropdown-toggle>
-            Subead Font
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" ng-model="select_color">
-            {% raw %}
-            <li><input type="text" ng-model="searchfont"></li>
-            <li ng-repeat="font in fonts | filter: searchfont"><a href="#" ng-click="fontselect(font, 'subhead')">{{font.family}}</a></li>
-            {% endraw %}
-          </ul>
-        </div>
-        
-
-      </div>
-      <div class="form-group template">
-        <h3 class="pull-left">Color </h3>
-        <tabset id="colorselect">
-          <tab select="resetColors()">
-            <tab-heading >
-              <i class="glyphicon glyphicon-folder-close"></i> 
-            </tab-heading>
-            <span ng-init="color1='{color: {{page.color1}}}'"> </span>
-            <input type="color" value="{{page.color1}}">{{page.color1}}<br>
-            <input type="color" value="{{page.color2}}">{{page.color2}}<br>
-            <input type="color" value="{{page.color3}}">{{page.color3}}<br>
-            <input type="color" value="{{page.color4}}">{{page.color4}}<br>
-            <input type="color" value="{{page.color5}}">{{page.color5}}<br>
-          </tab>
-          <tab>
-            <tab-heading>
-              <i class="glyphicon glyphicon-globe"></i>
-            </tab-heading>
-            {% raw %}
-                <h3>ColourLovers.com</h3>
-                <form>
-                  <input type="text" ng-model="query_colourlovers"><button ng-click="searchColourlovers(query_colourlovers)">Go</button>
-                </form> 
-                <ul ng-model="select_color">
-                  <li ng-repeat="color in colors"><a href="#" ng-click="colorselect(color)">{{color.title}}<br><img ng-src="{{color.imageUrl}}"></a></li>
-                </ul>
-            {% endraw %}
-          </tab>        
-        </tabset>
-      </div>
-        
-    </div>
+    {% include settingswell.html %}
   </body>
   {% include js.html%}
 </html>

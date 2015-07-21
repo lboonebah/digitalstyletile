@@ -3,6 +3,7 @@ $spacingunit:12px;
 .p_A {padding:$spacingunit/2 !important}
 .p_A2 {padding:$spacingunit*2 !important}
 .m_T2 {margin-top:$spacingunit*2 !important}
+.m_B4 {margin-bottom:$spacingunit*4 !important}
 .fixed {position:fixed !important; width:100%; z-index: 100}
 #styletile {
 	text-shadow: rgba(16,30,40,0.75) 0 2px 5px;
@@ -64,3 +65,9 @@ h1, h2, p{
 
 h2.template {font-size: 14px;}
 p.template {font-size: 12px;margin-top:$spacingunit/2}
+
+.imagepattern {
+	overflow: hidden;
+	height: 150px;
+	img{height: 100%}
+}
