@@ -6,7 +6,7 @@ $spacingunit:12px;
 .fixed {position:fixed !important; width:100%; z-index: 100}
 #styletile {
 	text-shadow: rgba(16,30,40,0.75) 0 2px 5px;
-	background-size: 100%;
+	&.fullwidth{background-size: 100%;}
 	border: thin solid #ccc;
 	padding: $spacingunit*5;
 
@@ -26,7 +26,10 @@ $spacingunit:12px;
 	.page-content, .settings-well{
 		float:left;
 	}
-	.page-content{width:80%}
+	.page-content{
+		width:80%; 
+		.container {width:960px !important}
+	}
 	.settings-well{
 		width:20%; 
 		padding:$spacingunit*7 $spacingunit*2 $spacingunit*2;
